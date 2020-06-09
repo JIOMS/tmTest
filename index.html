@@ -1,28 +1,28 @@
 <div>Teachable Machine Image Model</div>
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
-<div id="file-container"><input type="file" id="input-file"/></div>
+<!-- <div id="file-container"><input type="file" id="input-file"/></div> -->
 <div id="label-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 <script type="text/javascript">
-    document.getElementById('input-file').onchange = function (evt) {
-    var tgt = evt.target || window.event.srcElement,
-        files = tgt.files;
+//     document.getElementById('input-file').onchange = function (evt) {
+//     var tgt = evt.target || window.event.srcElement,
+//         files = tgt.files;
 
-    // FileReader support
-    if (FileReader && files && files.length) {
-        var fr = new FileReader();
-        fr.onload = function () {
-            new_image = document.createElement('image');
-            new_image.setAttribute('id', 'image-file');
-            new_image.setAttribute('src', fr.result);
-            new_image.setAttribute('alt', '로딩 실패');
-            document.querySelector('#file-container').appendChild(new_image);
-        }
-        fr.readAsDataURL(files[0]);
-    }
-}
+//     // FileReader support
+//     if (FileReader && files && files.length) {
+//         var fr = new FileReader();
+//         fr.onload = function () {
+//             new_image = document.createElement('image');
+//             new_image.setAttribute('id', 'image-file');
+//             new_image.setAttribute('src', fr.result);
+//             new_image.setAttribute('alt', '로딩 실패');
+//             document.querySelector('#file-container').appendChild(new_image);
+//         }
+//         fr.readAsDataURL(files[0]);
+//     }
+// }
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
@@ -67,8 +67,8 @@
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-        //const prediction = await model.predict(webcam.canvas);
-        const prediction = await model.predict(document.querySelector('#image-file'));
+        const prediction = await model.predict(webcam.canvas);
+//         const prediction = await model.predict(document.querySelector('#image-file'));
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2)*100 + "%";
