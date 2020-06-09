@@ -14,15 +14,13 @@
     if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
-            document.getElementById('file-container').src = fr.result;
+            new_image = document.createElement('image');
+            new_image.setAttribute('id', 'image-file');
+            new_image.setAttribute('src', fr.result);
+            new_image.setAttribute('alt', '로딩 실패');
+            document.querySelector('#file-container').appendChild(new_image);
         }
         fr.readAsDataURL(files[0]);
-    }
-
-    // Not supported
-    else {
-        // fallback -- perhaps submit the input to an iframe and temporarily store
-        // them on the server until the user's session ends.
     }
 }
     // More API functions here:
@@ -69,8 +67,8 @@
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-        const prediction = await model.predict(webcam.canvas);
-        const prediction = await model.predict(webcam.canvas);
+        //const prediction = await model.predict(webcam.canvas);
+        const prediction = await model.predict(document.querySelector('#image-file').src;
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2)*100 + "%";
