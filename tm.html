@@ -99,7 +99,7 @@
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
-                food_prediction[prediction[i].className] = prediction[i].probability.toFixed(2)/
+                food_prediction[prediction[i].className] = prediction[i].probability.toFixed(2);
             }
             return food_prediction;
         }
