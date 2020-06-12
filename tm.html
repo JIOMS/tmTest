@@ -41,6 +41,8 @@
     
         let model, webcam, labelContainer, maxPredictions;
     
+        var food_prediction;
+        
         // Load the image model and setup the webcam
         async function init() {
             const modelURL = URL + "model.json";
@@ -97,7 +99,9 @@
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
+                food_prediction[prediction[i].className] = prediction[i].probability.toFixed(2)/
             }
+            return food_prediction;
         }
     </script>    
 </body>
